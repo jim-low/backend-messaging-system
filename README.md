@@ -9,17 +9,17 @@
 
 ## Project Roadmap
 ### Setups
-[ ] Design project ERD Diagram
-[ ] Setup Database & Data Schema
+- [ ] Design project ERD Diagram
+- [ ] Setup Database & Data Schema
 
 ### Development
-[ ] Develop User Registration and Email Verification
-[ ] Develop Login Function
-[ ] Develop role-based access control system
+- [ ] Develop User Registration and Email Verification
+- [ ] Develop Login Function
+- [ ] Develop role-based access control system
 
 ### Messaging System API
-[ ] SendMessage function
-[ ] Receive Message function using WebSocket
+- [ ] SendMessage function
+- [ ] Receive Message function using WebSocket
 
 ## Learning Roadmap
 please fill this in...
