@@ -2,14 +2,16 @@ import express from 'express'
 import cors from 'cors'
 import { query } from './db.js'
 import dotenv from 'dotenv'
+import { whatisthis } from './api/whatisthis.js'
+import { sendMessage } from './api/message/send-message.js'
 dotenv.config()
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 
-app.get('/whatisthis', (_, res) => {
-  res.status(418).send({ whatisthis: { message: "(੭｡╹▿╹｡)੭ its a kirby!!!" } })
-})
+app.get('/whatisthis', whatisthis)
+app.post('/send-message', sendMessage)
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server started at port: ${process.env.SERVER_PORT}`)
