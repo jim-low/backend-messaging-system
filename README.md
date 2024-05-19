@@ -9,8 +9,8 @@
 
 ## Project Roadmap
 ### Setups
-- [ ] Design project ERD Diagram
-- [ ] Setup Database & Data Schema
+- [x] Design project ERD Diagram
+- [x] Setup Database & Data Schema
 
 ### Development
 - [ ] Develop User Registration and Email Verification
