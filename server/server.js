@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import { query } from './db.js'
 import dotenv from 'dotenv'
 import { whatisthis } from './api/whatisthis.js'
 import { sendMessage } from './api/message/send-message.js'
