@@ -8,9 +8,72 @@ html, body {
 }
 
 :root {
-  --background-color: #010501;
+  --background-color: #f0f0f0;
+  --text-color: unset;
 }
 
 body {
   background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Roboto;
+  max-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+}
+
+code {
+  font-size: 0.9rem;
+}
+
+.links {
+  display: flex;
+  gap: 15px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: unset;
+  text-decoration: none;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+  border: 3px solid black;
+  padding: 1rem 0.5rem;
+  transition: 0.25s;
+}
+
+.links a:hover {
+  background-color: #e0e0e0;;
+  transition: 0.25s;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  width: 12%;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.login-form input {
+  padding: 0.3rem 0.6rem;
+}
+
+#login-btn {
+  margin: auto;
+  margin-top: 15px;
+  width: 80%;
+  padding: 0.3rem 0.6rem;
 }

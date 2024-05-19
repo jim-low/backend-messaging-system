@@ -1,0 +1,49 @@
+:root {
+  --send-message-section-height: 6vh;
+}
+
+#chat-messages {
+  width: 100%;
+  height: calc(100vh - var(--send-message-section-height));
+  overflow: auto;
+}
+
+.send-message-section {
+  position: relative;
+  bottom: 0;
+  height: var(--send-message-section-height);
+  background-color: grey;
+
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  padding: 0.5rem 0.5rem;
+  overflow: hidden;
+}
+
+#message-input, #send-message-btn {
+  border-radius: 8px;
+  outline: none;
+  border: none;
+}
+
+#message-input {
+  width: 80%;
+  padding: 15px;
+}
+
+#send-message-btn {
+  width: 5%;
+}
+
+.message {
+  padding: 1rem;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message:nth-child(even) {
+  background-color: #d0d0d0;
+}
