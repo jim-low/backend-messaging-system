@@ -1,16 +1,12 @@
 import express from 'express'
 import cors from 'cors'
+import { query } from './db.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
-const PORT = 8080
-
 app.use(cors())
 
-app.get('/', (req, res) => {
-  console.log("nice, root endpoint has been created")
-  res.status(200).json({ message: "fuck you" })
-})
-
-app.listen(PORT, () => {
-  console.log(`Server started at port: ${PORT}`)
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`Server started at port: ${process.env.SERVER_PORT}`)
 })
