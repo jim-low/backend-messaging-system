@@ -22,7 +22,7 @@
 - [ ] Receive Message function using WebSocket
 
 ## Learning Roadmap
-- [ ] JWT
-- [ ] PostgresQL
+- [x] JWT
+- [x] PostgresQL
 - [ ] WebSocket
 - [ ] implement role-based access to users using WebSocket
