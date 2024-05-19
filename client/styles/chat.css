@@ -42,6 +42,12 @@
 
 .message p {
   margin: 0;
+  display: flex;
+  gap: 5px;
+}
+
+.message.sent-by-own p {
+  flex-direction: row-reverse;
 }
 
 .message:nth-child(even) {
