@@ -1,0 +1,11 @@
+button {
+  text-transform: capitalize;
+  width: 150px;
+  padding: 0.6rem 0;
+  color: white;
+}
+
+button#create { color: #28a745; }
+button#read { color: #007bff; }
+button#update { color: #ffc107; }
+button#delete { color: #dc3545; }

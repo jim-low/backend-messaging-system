@@ -10,16 +10,27 @@ async function login() {
     password: passwordInput.value,
   }
 
-  return fetch('http://localhost:5000/login', {
+  const res = await fetch('http://localhost:5000/login', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(bodyContents)
-  })
-  .then(res => res.json())
+  }).then(res => res.json())
+
+  const data = res.data
+  if (data.length === 0) {
+    emailInput.classList.add("error")
+    passwordInput.classList.add("error")
+    return
+  }
+
+  // TODO: store user token in session storage
+
+  window.location.href = "/pages/chat/chat.html"
 }
 
 loginBtn.addEventListener('click', async () => {
   const result = await login()
+  // console.log(result)
 })
