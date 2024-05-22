@@ -1,14 +1,21 @@
 import { query } from '../../db.js'
 
 async function login(req, res) {
+  const { loginType } = req.params;
   const { email, password } = req.body;
+
+  if (!['normal', 'admin', 'super-admin'].includes(loginType)) {
+    return res.status(418).send({ message: "invalid login type" })
+  }
+
+  const table = loginType === "super-admin" ? "super_admin" : loginType;
 
   try {
     const result = await query(`
 SELECT u.user_id, username, email
-  FROM super_admin_users s
+  FROM ${table}_users n
   JOIN users u
-  ON s.user_id = u.user_id
+  ON n.user_id = u.user_id
   AND u.email = '${email}'
   AND u.password = '${password}';
 `)
