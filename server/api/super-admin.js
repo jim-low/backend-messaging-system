@@ -24,8 +24,9 @@ async function getUserList(req, res) {
     const result = await query(`
 SELECT user_id, username
   FROM users
-  WHERE user_id NOT IN (SELECT user_id FROM super_admin_users);
-      `)
+  WHERE user_id NOT IN (SELECT user_id FROM super_admin_users)
+ORDER BY user_id ASC;
+`)
     return res.status(200).send({ data: result.rows })
   }
   catch(err) {
