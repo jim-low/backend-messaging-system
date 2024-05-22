@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import login from './api/login/login.js'
 import { whatisthis } from './api/whatisthis.js'
-import { login } from './api/login/login.js'
 dotenv.config()
 
 const app = express()

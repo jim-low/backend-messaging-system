@@ -27,6 +27,4 @@ SELECT u.user_id, username, email
   }
 }
 
-export {
-  login
-}
+export default login;
