@@ -7,7 +7,7 @@ loginBtn.addEventListener('click', async () => {
     return;
   }
 
-  const result = await login(emailInput.value, passwordInput.value, "super-admin");
+  const result = await login(emailInput.value, passwordInput.value, "admin");
 
   if (result.length === 0) {
     emailInput.classList.add("error");
@@ -17,5 +17,5 @@ loginBtn.addEventListener('click', async () => {
 
   // TODO: store user token in session storage
 
-  window.location.href = "/pages/super-admin/super-admin-home.html"
+  window.location.href = "/pages/chat/chat.html"
 })
