@@ -45,8 +45,8 @@ async function getUser(req, res) {
   try {
     const result = await query(`
 SELECT DISTINCT u.user_id, u.username, u.email
-  FROM normal_users n, admin_users a, users u
-  WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
+FROM normal_users n, admin_users a, users u
+WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
 AND u.user_id = ${userId};
 `)
 
@@ -90,7 +90,34 @@ UPDATE users
   }
 }
 
-function deleteUser(req, res) { }
+async function deleteUser(req, res) {
+  const { userId, accountType } = req.body;
+  if (userId == null || accountType == null) {
+    return res.status(418).send({ message: "Missing required parameters" })
+  }
+
+  if (accountType !== 'normal' && accountType !== 'admin') {
+    return res.status(418).send({ message: "Error: invalid parameters" })
+  }
+
+  try {
+    await query(`
+DELETE FROM ${accountType}_users
+  WHERE user_id = ${userId};
+`)
+
+    await query(`
+DELETE FROM users
+  WHERE user_id = ${userId};
+`)
+
+    return res.status(200).send({ message: "User deleted successfully" })
+  }
+  catch(err) {
+    console.error(err)
+    return res.status(503).send({ message: "Error deleting user" })
+  }
+}
 
 export {
   createUser,
