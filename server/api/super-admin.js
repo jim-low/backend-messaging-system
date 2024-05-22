@@ -34,7 +34,32 @@ SELECT user_id, username
   }
 }
 
-function getUser(req, res) { }
+async function getUser(req, res) {
+  const { userId } = req.params;
+
+  if (userId == null) {
+    return res.status(418).send({ message: "missing parameters" })
+  }
+
+  try {
+    const result = await query(`
+SELECT DISTINCT u.user_id, u.username, u.email
+  FROM normal_users n, admin_users a, users u
+  WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
+AND u.user_id = ${userId};
+`)
+
+    if (result.rows.length === 0) {
+      return res.status(418).send({ message: "No records found" })
+    }
+
+    return res.status(200).send({ data: result.rows })
+  }
+  catch(err) {
+    console.error(err);
+    return res.status(503).send({ message: "server made an oopsie >w<" });
+  }
+}
 
 function updateUser(req, res) { }
 
