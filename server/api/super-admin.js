@@ -19,6 +19,21 @@ VALUES ('${username}', '${password}', '${email}');
   }
 }
 
+async function getUserList(req, res) {
+  try {
+    const result = await query(`
+SELECT user_id, username
+  FROM users
+  WHERE user_id NOT IN (SELECT user_id FROM super_admin_users);
+      `)
+    return res.status(200).send({ data: result.rows })
+  }
+  catch(err) {
+    console.error(err)
+    return res.status(503).send({ message: "server made an oopsie >w<" })
+  }
+}
+
 function getUser(req, res) { }
 
 function updateUser(req, res) { }
@@ -27,6 +42,7 @@ function deleteUser(req, res) { }
 
 export {
   createUser,
+  getUserList,
   getUser,
   updateUser,
   deleteUser,
