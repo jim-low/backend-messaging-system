@@ -62,7 +62,33 @@ AND u.user_id = ${userId};
   }
 }
 
-function updateUser(req, res) { }
+async function updateUser(req, res) {
+  const { userId, newUsername, newEmail } = req.body;
+
+  if (userId == null || newUsername == null || newEmail == null || newUsername.length === 0 || newEmail === 0) {
+    return res.status(418).send({ message: "Missing required information." })
+  }
+
+  try {
+    const result = await query(`
+UPDATE users
+  SET
+  username = '${newUsername}',
+  email = '${newEmail}'
+  WHERE user_id = ${userId};
+`)
+
+    if (result.rowCount === 0) {
+      return res.status(418).send({ message: "No records found" })
+    }
+
+    return res.status(200).send({ message: "Successfully updated record." })
+  }
+  catch(err) {
+    console.error(err)
+    return res.status(503).send({ message: "Error on server side." })
+  }
+}
 
 function deleteUser(req, res) { }
 
