@@ -22,9 +22,9 @@ VALUES ('${username}', '${password}', '${email}');
 async function getUserList(req, res) {
   try {
     const result = await query(`
-SELECT user_id, username
-  FROM users
-  WHERE user_id NOT IN (SELECT user_id FROM super_admin_users)
+SELECT DISTINCT u.user_id, u.username, u.email, 'normal' AS role FROM normal_users n JOIN users u ON u.user_id = n.user_id
+UNION ALL
+SELECT DISTINCT u.user_id, u.username, u.email, 'admin' AS role FROM admin_users a JOIN users u ON u.user_id = a.user_id
 ORDER BY user_id ASC;
 `)
     return res.status(200).send({ data: result.rows })
