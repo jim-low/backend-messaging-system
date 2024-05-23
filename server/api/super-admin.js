@@ -37,9 +37,9 @@ async function getUserList(req, res) {
   try {
     const result = await query(`
 SELECT DISTINCT u.user_id, u.username, u.email, 'normal' AS role FROM normal_users n JOIN users u ON u.user_id = n.user_id
-UNION ALL
-SELECT DISTINCT u.user_id, u.username, u.email, 'admin' AS role FROM admin_users a JOIN users u ON u.user_id = a.user_id
-ORDER BY user_id ASC;
+  UNION ALL
+  SELECT DISTINCT u.user_id, u.username, u.email, 'admin' AS role FROM admin_users a JOIN users u ON u.user_id = a.user_id
+  ORDER BY user_id ASC;
 `)
     return res.status(200).send({ data: result.rows })
   }
@@ -59,8 +59,8 @@ async function getUser(req, res) {
   try {
     const result = await query(`
 SELECT DISTINCT u.user_id, u.username, u.email
-FROM normal_users n, admin_users a, users u
-WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
+  FROM normal_users n, admin_users a, users u
+  WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
 AND u.user_id = ${userId};
 `)
 
