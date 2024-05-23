@@ -16,7 +16,7 @@ app.use('/login', loginRouter)
 app.get('/whatisthis', whatisthis)
 app.post('/login/:loginType', login)
 
-app.post('/super-admin/create-user', createUser)
+app.post('/super-admin/create-user/:userType', createUser)
 app.get('/super-admin/get-user/:userId', getUser)
 app.get('/super-admin/get-users', getUserList)
 app.post('/super-admin/update-user', updateUser)
