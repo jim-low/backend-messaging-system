@@ -1,16 +1,30 @@
+import bcrypt from 'bcryptjs'
 import { query } from "../db.js";
 
 async function createUser(req, res) {
+  const { userType } = req.params;
   const { username, password, email } = req.body;
+  if (userType == null) {
+    return res.status(418)
+  }
+
   if (username.length === 0 || password.length === 0 || email.length === 0) {
     return res.status(418).send({ message: "Required input missing!" })
   }
 
   try {
+    const saltRounds = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
     await query(`
-INSERT INTO test_users(username, password, email)
-VALUES ('${username}', '${password}', '${email}');
+INSERT INTO users(username, password, email)
+VALUES ('${username}', '${hashedPassword}', '${email}');
 `)
+
+    await query(`
+INSERT INTO ${userType}_users(user_id)
+VALUES ((SELECT user_id FROM users WHERE username = '${username}'));
+`)
+
     return res.status(200).send({ message: "User added successfully" })
   }
   catch(err) {
