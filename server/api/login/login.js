@@ -19,6 +19,11 @@ SELECT u.user_id, username, email
   AND u.email = '${email}'
   AND u.password = '${password}';
 `)
+
+    if (result.rows.length <= 0) {
+      return res.status(401).send({ message: "Unable to find user" })
+    }
+
     res.status(200).send({ data: result.rows })
   }
   catch(err) {
