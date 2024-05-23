@@ -15,7 +15,5 @@ loginBtn.addEventListener('click', async () => {
     return;
   }
 
-  // TODO: store user token in session storage
-
   window.location.href = "/pages/chat/chat.html"
 })
