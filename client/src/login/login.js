@@ -11,12 +11,10 @@ async function login(email, password, loginType) {
     },
     body: JSON.stringify(bodyContents)
   });
-  const result = await res.json();
-  const data = result.data;
-
-  if (data.length === 0) {
-    return [];
+  if (!res.ok) {
+    console.error("There seems to be an error while logging in")
   }
 
-  return result;
+  const result = await res.json();
+  localStorage.setItem("token", result.accessToken)
 }
