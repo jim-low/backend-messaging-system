@@ -33,14 +33,13 @@ SELECT u.user_id, username, email, password
     }
 
     // user credentials are verified
-    const { userId, userName, userEmail } = result.rows[0]
+    const { user_id: userId, username: userName, email: userEmail } = result.rows[0]
     const user = {
-      userId,
+      id: userId,
       username: userName,
       email: userEmail
     }
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN)
-
     res.status(200).send({ accessToken })
   }
   catch(err) {
