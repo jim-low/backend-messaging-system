@@ -33,8 +33,9 @@ SELECT u.user_id, username, email, password
     }
 
     // user credentials are verified
-    const { userName, userEmail } = result.rows[0]
+    const { userId, userName, userEmail } = result.rows[0]
     const user = {
+      userId,
       username: userName,
       email: userEmail
     }
