@@ -16,5 +16,5 @@ async function login(email, password, loginType) {
   }
 
   const result = await res.json();
-  localStorage.setItem("token", result.accessToken)
+  localStorage.setItem("token", result.token)
 }
