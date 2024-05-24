@@ -2,6 +2,36 @@
   --send-message-section-height: 6vh;
 }
 
+body {
+  display: flex;
+}
+
+#users-window {
+  margin: 0;
+  padding: 0;
+}
+
+#users-window li {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+#users-window li.active,
+#users-window li:hover {
+  background-color: grey;
+  color: white;
+}
+
+#chat-stuff {
+  width: 100%;
+}
+
 #chat-messages {
   width: 100%;
   height: calc(100vh - var(--send-message-section-height));

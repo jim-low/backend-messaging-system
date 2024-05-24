@@ -3,43 +3,47 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/chat.css">
     <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/chat.css">
     <script src="../../src/chat.js" defer></script>
     <title>Chat Room</title>
   </head>
   <body>
-    <div id="chat-messages">
-      <div class="message">
-        <p>
-          <span class="username">Jim:</span>
-          <span>
-            this is a line of text
-          </span>
-        </p>
+    <ul id="users-window">
+    </ul>
+    <div id="chat-stuff">
+      <div id="chat-messages">
+        <div class="message">
+          <p>
+            <span class="username">Jim:</span>
+            <span>
+              this is a line of text
+            </span>
+          </p>
+        </div>
+        <div class="message">
+          <p>
+            <span class="username">Joe Mudder:</span>
+            this is another line of text
+          </p>
+        </div>
+        <div class="message">
+          <p>
+            <span class="username">Ben Dover:</span>
+            this is another line of text
+          </p>
+        </div>
+        <div class="message">
+          <p>
+            <span class="username">Mike Oxmaul:</span>
+            this is another line of text
+          </p>
+        </div>
       </div>
-      <div class="message">
-        <p>
-          <span class="username">Joe Mudder:</span>
-          this is another line of text
-        </p>
+      <div class="send-message-section">
+        <input type="text" id="message-input" placeholder="Type something here...">
+        <button id="send-message-btn">Send</button>
       </div>
-      <div class="message">
-        <p>
-          <span class="username">Ben Dover:</span>
-          this is another line of text
-        </p>
-      </div>
-      <div class="message">
-        <p>
-          <span class="username">Mike Oxmaul:</span>
-          this is another line of text
-        </p>
-      </div>
-    </div>
-    <div class="send-message-section">
-      <input type="text" id="message-input" placeholder="Type something here...">
-      <button id="send-message-btn">Send</button>
     </div>
   </body>
 </html>
