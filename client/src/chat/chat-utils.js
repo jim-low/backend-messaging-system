@@ -64,7 +64,7 @@ async function loadUserChat(selectedUser) {
 
   const response = await fetch(`http://localhost:5000/get-messages/${selectedUser}`, {
     headers: {
-      'authorization': JSON.stringify({ token: localStorage.getItem("token") })
+      'authorization': localStorage.getItem("token")
     }
   })
   const results = await response.json()

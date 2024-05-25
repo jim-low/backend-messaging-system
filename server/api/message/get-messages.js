@@ -5,7 +5,7 @@ const { query } = require("../../db.js")
 
 async function getMessages(req, res) {
   const { userId: targetUserId } = req.params;
-  const token = req.headers['authorization'];
+  const token = req.headers['authorization']
 
   if (targetUserId == null || token == null) {
     return res.status(418).send({ error: "missing required parameters" })
