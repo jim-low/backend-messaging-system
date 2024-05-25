@@ -39,7 +39,6 @@ const sendBtn = document.getElementById("send-message-btn");
 (async() => {
   const response = await fetch('http://localhost:5000/super-admin/get-users')
   const results = await response.json()
-  console.log(results)
 
   results.data.forEach(data => {
     const userTemplate = UserTemplate(data.username)
