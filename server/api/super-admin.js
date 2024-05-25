@@ -1,5 +1,5 @@
-import bcrypt from 'bcryptjs'
-import { query } from "../db.js";
+const bcrypt = require('bcryptjs')
+const { query } = require("../db.js");
 
 async function createUser(req, res) {
   const { userType } = req.params;
@@ -133,10 +133,8 @@ DELETE FROM users
   }
 }
 
-export {
-  createUser,
-  getUserList,
-  getUser,
-  updateUser,
-  deleteUser,
-}
+exports.createUser = createUser;
+exports.getUserList = getUserList;
+exports.getUser = getUser;
+exports.updateUser = updateUser;
+exports.deleteUser = deleteUser;

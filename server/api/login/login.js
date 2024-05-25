@@ -1,8 +1,7 @@
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
-import { query } from '../../db.js'
-import dotenv from 'dotenv'
-dotenv.config()
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const { query } = require('../../db.js')
+require('dotenv').config()
 
 async function login(req, res) {
   const { loginType } = req.params;
@@ -48,4 +47,4 @@ SELECT u.user_id, username, email, password
   }
 }
 
-export default login;
+exports.login = login;

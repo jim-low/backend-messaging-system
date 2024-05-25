@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
-import pg from "pg";
+require('dotenv').config()
 
-dotenv.config()
+const pg = require("pg");
 const { Pool } = pg
 
 const pool = new Pool({
@@ -14,6 +13,4 @@ const pool = new Pool({
 
 const query = (text, params) => pool.query(text, params)
 
-export {
-  query
-}
+exports.query = query
