@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/style.css">
     <link rel="stylesheet" href="../../styles/chat.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="../../src/chat/chat-utils.js" defer></script>
+    <script src="../../src/chat/socket.js" defer></script>
     <script src="../../src/chat/chat.js" defer></script>
     <title>Chat Room</title>
   </head>
@@ -12,34 +15,7 @@
     <ul id="users-window">
     </ul>
     <div id="chat-stuff">
-      <div id="chat-messages">
-        <div class="message">
-          <p>
-            <span class="username">Jim:</span>
-            <span>
-              this is a line of text
-            </span>
-          </p>
-        </div>
-        <div class="message">
-          <p>
-            <span class="username">Joe Mudder:</span>
-            this is another line of text
-          </p>
-        </div>
-        <div class="message">
-          <p>
-            <span class="username">Ben Dover:</span>
-            this is another line of text
-          </p>
-        </div>
-        <div class="message">
-          <p>
-            <span class="username">Mike Oxmaul:</span>
-            this is another line of text
-          </p>
-        </div>
-      </div>
+      <div id="chat-messages"></div>
       <div class="send-message-section">
         <input type="text" id="message-input" placeholder="Type something here...">
         <button id="send-message-btn">Send</button>
