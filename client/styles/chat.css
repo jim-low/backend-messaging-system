@@ -9,6 +9,7 @@ body {
 #users-window {
   margin: 0;
   padding: 0;
+  width: 20%;
 }
 
 #users-window li {
@@ -29,7 +30,7 @@ body {
 }
 
 #chat-stuff {
-  width: 100%;
+  width: 80%;
 }
 
 #chat-messages {
