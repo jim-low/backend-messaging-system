@@ -12,9 +12,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// const loginRouter = express.Router();
-// app.use('/login', loginRouter)
-
 app.get('/whatisthis', whatisthis)
 app.post('/login/:loginType', login)
 
