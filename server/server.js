@@ -23,7 +23,7 @@ app.get('/super-admin/get-users', getUserList)
 app.post('/super-admin/update-user', updateUser)
 app.post('/super-admin/delete-user', deleteUser)
 
-app.get('/get-messages/:user1/:user2', getMessages)
+app.get('/get-messages/:userId', getMessages)
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server started at port: ${process.env.SERVER_PORT}`)
