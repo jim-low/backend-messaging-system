@@ -4,6 +4,7 @@ const { login } = require('./api/login/login.js')
 const { whatisthis } = require('./api/whatisthis.js')
 const { createUser, deleteUser, getUser, getUserList, updateUser } = require('./api/super-admin.js')
 const { getMessages } = require('./api/message/get-messages.js')
+const { authenticate } = require('./middlewares/authenticate.js')
 require('./socket-io/socket-io-server.js')
 require('dotenv').config()
 
@@ -19,7 +20,7 @@ app.post('/login/:loginType', login)
 
 app.post('/super-admin/create-user/:userType', createUser)
 app.get('/super-admin/get-user/:userId', getUser)
-app.get('/super-admin/get-users', getUserList)
+app.get('/super-admin/get-users', authenticate, getUserList)
 app.post('/super-admin/update-user', updateUser)
 app.post('/super-admin/delete-user', deleteUser)
 

@@ -32,7 +32,11 @@ const UserTemplate = (username) => {
 }
 
 async function displayUsersList() {
-  const response = await fetch('http://localhost:5000/super-admin/get-users')
+  const response = await fetch('http://localhost:5000/super-admin/get-users', {
+    headers: {
+      'authorization': localStorage.getItem("token")
+    }
+  })
   const results = await response.json()
   setupUsersClick(results.data)
 }
