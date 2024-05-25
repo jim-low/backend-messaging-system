@@ -17,4 +17,5 @@ async function login(email, password, loginType) {
 
   const result = await res.json();
   localStorage.setItem("token", result.token)
+  localStorage.setItem("loginType", loginType)
 }
