@@ -38,21 +38,39 @@ const UserTemplate = (username) => {
 async function displayUsersList() {
   const response = await fetch('http://localhost:5000/super-admin/get-users')
   const results = await response.json()
-
-  results.data.forEach(data => {
-    const userTemplate = UserTemplate(data.username)
-    usersWindow.appendChild(userTemplate)
-  })
-  setupUsersClick()
+  setupUsersClick(results.data)
 }
 
-function setupUsersClick() {
-  const users = document.querySelectorAll(".user")
-  users.forEach(user => {
-    user.addEventListener('click', () => {
-      users.forEach(user2 => user2.classList.remove("active"))
-      user.classList.add("active")
+function setupUsersClick(results) {
+  results.forEach(data => {
+    const userTemplate = UserTemplate(data.username)
+    usersWindow.appendChild(userTemplate)
+    userTemplate.addEventListener('click', () => {
+      // reset click styling
+      document.querySelectorAll('.user').forEach(user2 => user2.classList.remove("active"))
+      userTemplate.classList.add("active")
+
+      // load user messages
+      loadUserChat(data.user_id)
     })
+  })
+}
+
+async function loadUserChat(selectedUser) {
+  if (localStorage.getItem("token") == null) {
+    window.location.href = "/index.html"
+    return
+  }
+
+  const response = await fetch(`http://localhost:5000/get-messages/${selectedUser}`, {
+    headers: {
+      'authorization': JSON.stringify({ token: localStorage.getItem("token") })
+    }
+  })
+  const results = await response.json()
+  chatWindow.innerHTML = ""
+  results.data.forEach(data => {
+    sendMessage('test', data.message)
   })
 }
 
