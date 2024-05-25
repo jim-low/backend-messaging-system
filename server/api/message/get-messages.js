@@ -18,7 +18,11 @@ async function getMessages(req, res) {
 
   try {
     const result = await query(`
-SELECT from_user_id, to_user_id, message
+SELECT from_user_id, to_user_id, message,
+  CASE
+    WHEN from_user_id = ${id} THEN TRUE
+    ELSE FALSE
+  END AS self_sent
   FROM messages
   WHERE
 (from_user_id = ${id} OR from_user_id = ${targetUserId})

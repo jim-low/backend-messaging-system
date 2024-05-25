@@ -3,21 +3,17 @@
  * @param {string} username
  * @param {string} message
  */
-const MessageTemplate = (username, message) => {
+const MessageTemplate = (message, selfSent) => {
   const p = document.createElement("p")
-
-  const usernameSpan = document.createElement("span")
-  usernameSpan.classList.add("username")
-  usernameSpan.innerText = `${username}: `
 
   const messageSpan = document.createElement("span")
   messageSpan.innerText = `${message}`
 
-  p.appendChild(usernameSpan)
   p.appendChild(messageSpan)
 
   const chatMessage = document.createElement("div")
   chatMessage.classList.add("message")
+  if (selfSent) chatMessage.classList.add("self-sent")
   chatMessage.appendChild(p)
 
   return chatMessage
@@ -70,14 +66,14 @@ async function loadUserChat(selectedUser) {
   const results = await response.json()
   chatWindow.innerHTML = ""
   results.data.forEach(data => {
-    sendMessage('test', data.message)
+    sendMessage(data.message, data.self_sent)
   })
 }
 
-function sendMessage(username, message) {
+function sendMessage(message, selfSent) {
   if (message.length === 0) return
 
-  const chatMessage = MessageTemplate(username, message)
+  const chatMessage = MessageTemplate(message, selfSent)
   chatWindow.appendChild(chatMessage)
   messageInput.value = ""
 }
