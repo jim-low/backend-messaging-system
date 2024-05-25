@@ -50,6 +50,8 @@ function setupUsersClick(results) {
       document.querySelectorAll('.user').forEach(user2 => user2.classList.remove("active"))
       userTemplate.classList.add("active")
 
+      targetUserId = data.user_id
+
       // load user messages
       loadUserChat(data.user_id)
     })

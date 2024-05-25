@@ -10,5 +10,5 @@ function emitSendMessage(fromUser, toUser, message) {
 }
 
 socket.on('receive-message', message => {
-  sendMessage("Joe Mudder", message)
+  sendMessage(message, true)
 })
