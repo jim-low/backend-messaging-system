@@ -33,7 +33,7 @@ VALUES ((SELECT user_id FROM users WHERE username = '${username}'));
   }
 }
 
-async function getUserList(req, res) {
+async function getUsersList(req, res) {
   const user = req.user
 
   try {
@@ -41,6 +41,8 @@ async function getUserList(req, res) {
 SELECT DISTINCT u.user_id, u.username, u.email, 'normal' AS role FROM normal_users n JOIN users u ON u.user_id = n.user_id AND u.user_id != ${user.id}
   UNION ALL
   SELECT DISTINCT u.user_id, u.username, u.email, 'admin' AS role FROM admin_users a JOIN users u ON u.user_id = a.user_id AND u.user_id != ${user.id}
+  UNION ALL
+  SELECT DISTINCT u.user_id, u.username, u.email, 'super-admin' AS role FROM super_admin_users a JOIN users u ON u.user_id = a.user_id AND u.user_id != ${user.id}
   ORDER BY user_id ASC;
 `)
     return res.status(200).send({ data: result.rows })
@@ -136,7 +138,7 @@ DELETE FROM users
 }
 
 exports.createUser = createUser;
-exports.getUserList = getUserList;
+exports.getUsersList = getUsersList;
 exports.getUser = getUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
