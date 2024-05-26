@@ -14,7 +14,7 @@ window.addEventListener('keydown', (e) => {
     window.location.href = '/index.html'
   }
 
-  emitSendMessage(userToken, targetUserId, message)
+  socket.emit('send-message', userToken, targetUserId, message)
 })
 
 sendBtn.addEventListener('click', () => {
@@ -25,7 +25,7 @@ sendBtn.addEventListener('click', () => {
     window.location.href = '/index.html'
   }
 
-  emitSendMessage(userToken, targetUserId, message)
+  socket.emit('send-message', userToken, targetUserId, message)
 })
 
 displayUsersList()
