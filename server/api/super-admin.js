@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const { query } = require("../db.js");
 
@@ -64,8 +65,7 @@ async function getUser(req, res) {
     const result = await query(`
 SELECT DISTINCT u.user_id, u.username, u.email
   FROM normal_users n, admin_users a, users u
-  WHERE u.user_id NOT IN (SELECT user_id FROM super_admin_users)
-AND u.user_id = ${userId};
+  WHERE u.user_id = ${userId};
 `)
 
     if (result.rows.length === 0) {
