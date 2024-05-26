@@ -43,7 +43,7 @@ SELECT u.user_id, username, email, password
   }
   catch(err) {
     console.log(err)
-    res.status(503).send({ message: "How strange... There seems to be an error" })
+    res.status(503).send({ error: "How strange... There seems to be an error" })
   }
 }
 

@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const { query } = require("../db.js");
 
@@ -50,7 +49,7 @@ SELECT DISTINCT u.user_id, u.username, u.email, 'normal' AS role FROM normal_use
   }
   catch(err) {
     console.error(err)
-    return res.status(503).send({ message: "server made an oopsie >w<" })
+    return res.status(503).send({ error: err })
   }
 }
 
@@ -76,7 +75,7 @@ SELECT DISTINCT u.user_id, u.username, u.email
   }
   catch(err) {
     console.error(err);
-    return res.status(503).send({ message: "server made an oopsie >w<" });
+    return res.status(503).send({ error: err });
   }
 }
 

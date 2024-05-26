@@ -1,6 +1,4 @@
 require('dotenv').config()
-
-const { verify: jwtVerify } = require("jsonwebtoken");
 const { query } = require("../../db.js")
 
 async function getMessages(req, res) {

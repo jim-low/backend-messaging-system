@@ -3,13 +3,13 @@ const { query } = require('../db');
 
 async function sendMessage(token, toUser, message, room, socket) {
   if (token.length === 0 || toUser === 0 || message.length === 0) {
-    console.error("How strange... you must have fucked up");
+    console.error("Missing required parameters: send-message.js");
     return;
   }
 
   const user = jwt.decode(token, process.env.ACCESS_TOKEN)
   if (user == null) {
-    console.error("How strange... you must have fucked up... again...");
+    console.error("User is not authenticated");
     return;
   }
 
