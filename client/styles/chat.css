@@ -10,6 +10,13 @@ body {
   margin: 0;
   padding: 0;
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#users-window #logged-in-user p {
+  padding: 1rem;
 }
 
 #users-window li {

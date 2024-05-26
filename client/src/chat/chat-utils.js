@@ -31,6 +31,22 @@ const UserTemplate = (username) => {
   return li
 }
 
+async function displayLoggedInUser() {
+  const userId = localStorage.getItem('id')
+  if (userId == null) {
+    window.location.href = "/index.html"
+    return
+  }
+
+  const response = await fetch(`http://localhost:5000/super-admin/get-user/${userId}`)
+  const results = await response.json()
+
+  const p = document.createElement('p')
+  p.innerText = results.data[0].username
+
+  loggedInUserWindow.appendChild(p)
+}
+
 async function displayUsersList() {
   const response = await fetch('http://localhost:5000/super-admin/get-users', {
     headers: {

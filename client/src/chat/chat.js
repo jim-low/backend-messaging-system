@@ -1,4 +1,5 @@
-const usersWindow = document.getElementById("users-window");
+const usersWindow = document.getElementById("users");
+const loggedInUserWindow = document.getElementById("logged-in-user");
 const chatWindow = document.getElementById("chat-messages");
 const messageInput = document.getElementById("message-input");
 const sendBtn = document.getElementById("send-message-btn");
@@ -29,3 +30,4 @@ sendBtn.addEventListener('click', () => {
 })
 
 displayUsersList()
+displayLoggedInUser()
