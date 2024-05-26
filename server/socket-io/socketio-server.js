@@ -12,11 +12,11 @@ const io = require('socket.io')(process.env.WEBSOCKET_PORT, {
 io.on('connection', socket => {
   console.log("New user connected")
 
-  socket.on('send-message', (token, toUser, message) => {
-    sendMessage(token, toUser, message, socket)
-  })
-
   socket.on('join-room', room => {
     joinRoom(room, socket)
+  })
+
+  socket.on('send-message', (token, toUser, message, room) => {
+    sendMessage(token, toUser, message, room, socket)
   })
 })

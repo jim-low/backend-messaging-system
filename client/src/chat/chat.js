@@ -15,7 +15,9 @@ window.addEventListener('keydown', (e) => {
     window.location.href = '/index.html'
   }
 
-  socket.emit('send-message', userToken, targetUserId, message)
+  const room = getRoomName(localStorage.getItem('username'), document.querySelector('.user.active').innerText)
+  sendMessage(message, true)
+  socket.emit('send-message', userToken, targetUserId, message, room)
 })
 
 sendBtn.addEventListener('click', () => {
@@ -26,7 +28,9 @@ sendBtn.addEventListener('click', () => {
     window.location.href = '/index.html'
   }
 
-  socket.emit('send-message', userToken, targetUserId, message)
+  const room = getRoomName(localStorage.getItem('username'), document.querySelector('.user.active').innerText)
+  sendMessage(message, true)
+  socket.emit('send-message', userToken, targetUserId, message, room)
 })
 
 displayUsersList()
