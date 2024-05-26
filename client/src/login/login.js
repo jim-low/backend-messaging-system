@@ -17,6 +17,6 @@ async function login(email, password, loginType) {
 
   const result = await res.json();
   localStorage.setItem("token", result.token)
-  localStorage.setItem("id", result.id)
+  localStorage.setItem("username", result.username)
   localStorage.setItem("loginType", loginType)
 }

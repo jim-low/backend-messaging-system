@@ -39,7 +39,7 @@ SELECT u.user_id, username, email, password
       email: userEmail
     }
     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN)
-    res.status(200).send({ token: accessToken, id: userId })
+    res.status(200).send({ token: accessToken, username: userName })
   }
   catch(err) {
     console.log(err)
