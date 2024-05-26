@@ -65,6 +65,10 @@ function setupUsersClick(results) {
 
       targetUserId = data.user_id
 
+      // join room
+      const room = getRoomName(localStorage.getItem('username'), data.username)
+      socket.emit("join-room", room)
+
       // load user messages
       loadUserChat(data.user_id)
     })
@@ -95,4 +99,11 @@ function sendMessage(message, selfSent) {
   const chatMessage = MessageTemplate(message, selfSent)
   chatWindow.appendChild(chatMessage)
   messageInput.value = ""
+}
+
+function getRoomName(username1, username2) {
+  const first = username1.split(" ")[0]
+  const second = username2.split(" ")[0]
+  const final = [first, second].sort()
+  return final.join("-")
 }
