@@ -5,7 +5,8 @@ const { whatisthis } = require('./api/whatisthis.js')
 const { createUser, deleteUser, getUser, getUserList, updateUser } = require('./api/super-admin.js')
 const { getMessages } = require('./api/message/get-messages.js')
 const { authenticate } = require('./middlewares/authenticate.js')
-require('./socket-io/socket-io-server.js')
+const { io } = require('./socket-io/socketio-server.js') // enable WebSocket server
+const { sendMessage } = require('./socket-io/send-message.js')
 require('dotenv').config()
 
 const app = express()
@@ -22,6 +23,12 @@ app.post('/super-admin/update-user', updateUser)
 app.post('/super-admin/delete-user', deleteUser)
 
 app.get('/get-messages/:userId', getMessages)
+
+// WebSocket stuff
+io.on('connection', socket => {
+  console.log("New user connected")
+  socket.on('send-message', sendMessage)
+})
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server started at port: ${process.env.SERVER_PORT}`)

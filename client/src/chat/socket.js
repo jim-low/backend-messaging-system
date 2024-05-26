@@ -5,10 +5,9 @@ socket.on('connect', () => {
 })
 
 function emitSendMessage(fromUser, toUser, message) {
-  console.log(fromUser, toUser, message)
   socket.emit('send-message', fromUser, toUser, message)
 }
 
-socket.on('receive-message', message => {
-  sendMessage(message, true)
+socket.on('receive-message', (message, sentId) => {
+  sendMessage(message, sentId === targetUserId)
 })
