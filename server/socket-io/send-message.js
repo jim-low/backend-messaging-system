@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const { query } = require('../db');
 const { io } = require('./socketio-server');
 
-async function sendMessage(token, toUser, message) {
+async function sendMessage(token, toUser, message, socket) {
   if (token.length === 0 || toUser === 0 || message.length === 0) {
     console.error("How strange... you must have fucked up");
     return;
@@ -16,7 +16,7 @@ async function sendMessage(token, toUser, message) {
 
   await query(`INSERT INTO messages(from_user_id, to_user_id, message) VALUES (${user.id}, ${toUser}, '${message}');`)
 
-  io.emit('receive-message', message, toUser);
+  socket.broadcast.emit('receive-message', message, toUser);
 }
 
 exports.sendMessage = sendMessage;
