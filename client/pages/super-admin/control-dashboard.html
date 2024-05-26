@@ -13,12 +13,70 @@
     <div class="links">
       <h3>(੭｡╹▿╹｡)੭ &nbsp;&nbsp; Please select one below</h3>
       <div>
-        <button id="create">create user</button>
-        <button id="read">get user details</button>
-        <button id="update">update user details</button>
-        <button id="delete">delete user</button>
+        <button id="create" data-container="create-user-dashboard" class="dashboard-button">create user</button>
+        <button id="read" data-container="get-user-dashboard" class="dashboard-button">get user details</button>
+        <button id="update" data-container="update-user-dashboard" class="dashboard-button">update user details</button>
+        <button id="delete" data-container="delete-user-dashboard" class="dashboard-button">delete user</button>
       </div>
     </div>
-  
+    <div id="dashboard">
+      <div id="create-user-dashboard" class="container">
+        <div>
+          <input type="text" id="create-user-username" placeholder="Username" />
+          <input type="text" id="create-user-email" placeholder="Email" />
+          <input type="password" id="create-user-password" placeholder="Password" />
+        </div>
+        <button id="create-user-button">Create user</button>
+      </div>
+
+      <div id="get-user-dashboard" class="container">
+        <div>
+          <label for="users">Select user:</label>
+          <select name="users" id="users-dropdown">
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+          </select>
+        </div>
+        <div class="get-user-result">
+          <p>Username: Ben Dover</p>
+          <p>Email: ben@gmail.com</p>
+        </div>
+      </div>
+
+      <div id="update-user-dashboard" class="container">
+        <div class="select-user">
+          <label for="update-user">Select user:</label>
+          <select name="update-user" id="update-user-dropdown">
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+          </select>
+        </div>
+        <div class="inputs">
+          <div>
+            <input type="text" id="update-user-username" placeholder="Username" />
+            <input type="text" id="update-user-email" placeholder="Email" />
+            <input type="password" id="update-user-password" placeholder="Password" />
+          </div>
+          <button id="update-user-button">Update user</button>
+        </div>
+      </div>
+
+      <div id="delete-user-dashboard" class="container">
+        <div>
+          <label for="delete-user">Select user:</label>
+          <select name="delete-user" id="delete-user-dropdown">
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+            <option value="hmm">hmmmmm</option>
+          </select>
+        </div>
+        <button id="delete-user-button">Delete user</button>
+      </div>
+    </div>
   </body>
 </html>
