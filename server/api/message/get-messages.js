@@ -5,16 +5,11 @@ const { query } = require("../../db.js")
 
 async function getMessages(req, res) {
   const { userId: targetUserId } = req.params;
-  const token = req.headers['authorization']
+  const { id } = req.user
 
-  if (targetUserId == null || token == null) {
+  if (targetUserId == null) {
     return res.status(418).send({ error: "missing required parameters" })
   }
-
-  const id = jwtVerify(token, process.env.ACCESS_TOKEN, (err, user) => {
-    if (err) return res.sendStatus(418);
-    return user.id;
-  })
 
   try {
     const result = await query(`
