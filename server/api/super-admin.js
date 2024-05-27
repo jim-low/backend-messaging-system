@@ -71,7 +71,7 @@ SELECT DISTINCT u.user_id, u.username, u.email
       return res.status(418).send({ message: "No records found" })
     }
 
-    return res.status(200).send({ data: result.rows })
+    return res.status(200).send({ data: result.rows[0] })
   }
   catch(err) {
     console.error(err);

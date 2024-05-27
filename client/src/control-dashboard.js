@@ -1,5 +1,6 @@
 const containers = document.querySelectorAll('.container')
 const dashboardButtons = document.querySelectorAll('.dashboard-button')
+let usersList = []
 
 const createUserStuff = {
   usernameInput: document.getElementById("create-user-username"),
@@ -64,4 +65,60 @@ createUserStuff.submitButton.addEventListener('click', () => {
       if (!res.ok) return
       console.log("successfully created new user")
     }).catch(err => { console.error(err) })
+})
+
+fetch('http://localhost:5000/super-admin/get-users', {
+  headers: {
+    "authorization": localStorage.getItem("token")
+  }
+})
+  .then(res => {
+    return res.json()
+  })
+  .then(res => {
+    res.data.forEach(data => {
+      const getOption = document.createElement('option')
+      getOption.value = data.user_id
+      getOption.innerText = data.username
+
+      const updateOption = document.createElement('option')
+      updateOption.value = data.user_id
+      updateOption.innerText = data.username
+
+      const deleteOption = document.createElement('option')
+      deleteOption.value = data.user_id
+      deleteOption.innerText = data.username
+
+      getUserStuff.selectInput.appendChild(getOption)
+      updateUserStuff.selectInput.appendChild(updateOption)
+      deleteUserStuff.selectInput.appendChild(deleteOption)
+    })
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
+getUserStuff.selectInput.addEventListener('change', () => {
+  const selected = getUserStuff.selectInput.value
+
+  fetch(`http://localhost:5000/super-admin/get-user/${selected}`)
+    .then(res => {
+      return res.json()
+    })
+    .then(res => {
+      const data = res.data;
+      const username = document.createElement("p");
+      username.innerText = `Username: ${data.username}`
+
+      const email = document.createElement("p");
+      email.innerText = `Email: ${data.email}`
+
+      const accountType = document.createElement("p");
+      accountType.innerText = `accountType: ${data.role || "69 nice"}`
+
+      getUserStuff.resultsContainer.innerHTML = ""
+      getUserStuff.resultsContainer.appendChild(username)
+      getUserStuff.resultsContainer.appendChild(email)
+      getUserStuff.resultsContainer.appendChild(accountType)
+    })
 })

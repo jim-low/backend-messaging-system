@@ -37,11 +37,10 @@ label {
   margin-right: 1rem;
 }
 
+button {
+  color: unset;
+}
 
 #create-user-dashboard {
   gap: 15px;
-}
-
-#create-user-dashboard button {
-  color: unset;
 }
