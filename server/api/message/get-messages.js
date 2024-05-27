@@ -20,7 +20,8 @@ SELECT from_user_id, to_user_id, message,
   WHERE
 (from_user_id = ${id} OR from_user_id = ${targetUserId})
 AND
-(to_user_id = ${id} OR to_user_id = ${targetUserId});
+(to_user_id = ${id} OR to_user_id = ${targetUserId})
+ORDER BY message_id ASC;
 `)
 
     return res.status(200).send({ data: result.rows })
