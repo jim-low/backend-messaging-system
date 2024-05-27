@@ -19,7 +19,6 @@ const updateUserStuff = {
   selectInput: document.getElementById("update-user-dropdown"),
   usernameInput: document.getElementById("update-user-username"),
   emailInput: document.getElementById("update-user-email"),
-  passwordInput: document.getElementById("update-user-password"),
   submitButton: document.getElementById("update-user-button"),
 }
 
@@ -121,4 +120,39 @@ getUserStuff.selectInput.addEventListener('change', () => {
       getUserStuff.resultsContainer.appendChild(email)
       getUserStuff.resultsContainer.appendChild(accountType)
     })
+})
+
+updateUserStuff.submitButton.addEventListener('click', () => {
+  const userId = updateUserStuff.selectInput.value
+  const newUsername = updateUserStuff.usernameInput.value
+  const newEmail = updateUserStuff.emailInput.value
+
+  if ([userId.length, newUsername.length, newEmail.length].includes(0)) {
+    console.log("haha credentials go brr")
+    return
+  }
+
+  const bodyContent = {
+    userId,
+    newUsername,
+    newEmail,
+  };
+  fetch(`http://localhost:5000/super-admin/update-user`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyContent)
+  })
+  .then(res => {
+      return res.json()
+    })
+    .then(res => {
+      console.log(res)
+    })
+  .catch(err => {
+      console.error("error updating user details")
+      console.error(err)
+    })
+
 })
