@@ -53,7 +53,6 @@ createUserStuff.submitButton.addEventListener('click', () => {
     password: createUserStuff.passwordInput.value,
     email: createUserStuff.emailInput.value,
   }
-  console.log(bodyContent)
   fetch(`http://localhost:5000/super-admin/create-user/${userType}`, {
     method: "POST",
     headers: {
@@ -106,7 +105,6 @@ getUserStuff.selectInput.addEventListener('change', () => {
     })
     .then(res => {
       const data = res.data;
-      console.log(data)
       const username = document.createElement("p");
       username.innerText = `Username: ${data.username}`
 
