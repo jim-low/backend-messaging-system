@@ -62,9 +62,9 @@ async function getUser(req, res) {
 
   try {
     const result = await query(`
-SELECT DISTINCT u.user_id, u.username, u.email
-  FROM normal_users n, admin_users a, users u
-  WHERE u.user_id = ${userId};
+SELECT DISTINCT u.user_id, u.username, u.email, 'normal' AS role FROM normal_users n JOIN users u ON u.user_id = n.user_id AND u.user_id = ${userId}
+  UNION ALL
+  SELECT DISTINCT u.user_id, u.username, u.email, 'admin' AS role FROM admin_users a JOIN users u ON a.user_id = u.user_id AND u.user_id = ${userId};
 `)
 
     if (result.rows.length === 0) {

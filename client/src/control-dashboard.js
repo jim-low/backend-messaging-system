@@ -77,15 +77,15 @@ fetch('http://localhost:5000/super-admin/get-users', {
   .then(res => {
     res.data.forEach(data => {
       const getOption = document.createElement('option')
-      getOption.value = data.user_id
+      getOption.value = `${data.user_id} ${data.role}`
       getOption.innerText = data.username
 
       const updateOption = document.createElement('option')
-      updateOption.value = data.user_id
+      updateOption.value = `${data.user_id} ${data.role}`
       updateOption.innerText = data.username
 
       const deleteOption = document.createElement('option')
-      deleteOption.value = data.user_id
+      deleteOption.value = `${data.user_id} ${data.role}`
       deleteOption.innerText = data.username
 
       getUserStuff.selectInput.appendChild(getOption)
@@ -98,7 +98,7 @@ fetch('http://localhost:5000/super-admin/get-users', {
   })
 
 getUserStuff.selectInput.addEventListener('change', () => {
-  const selected = getUserStuff.selectInput.value
+  const selected = getUserStuff.selectInput.value.split(" ")[0]
 
   fetch(`http://localhost:5000/super-admin/get-user/${selected}`)
     .then(res => {
@@ -106,6 +106,7 @@ getUserStuff.selectInput.addEventListener('change', () => {
     })
     .then(res => {
       const data = res.data;
+      console.log(data)
       const username = document.createElement("p");
       username.innerText = `Username: ${data.username}`
 
@@ -113,7 +114,7 @@ getUserStuff.selectInput.addEventListener('change', () => {
       email.innerText = `Email: ${data.email}`
 
       const accountType = document.createElement("p");
-      accountType.innerText = `accountType: ${data.role || "69 nice"}`
+      accountType.innerText = `accountType: ${data.role}`
 
       getUserStuff.resultsContainer.innerHTML = ""
       getUserStuff.resultsContainer.appendChild(username)
@@ -123,7 +124,7 @@ getUserStuff.selectInput.addEventListener('change', () => {
 })
 
 updateUserStuff.submitButton.addEventListener('click', () => {
-  const userId = updateUserStuff.selectInput.value
+  const userId = updateUserStuff.selectInput.value.split(" ")[0]
   const newUsername = updateUserStuff.usernameInput.value
   const newEmail = updateUserStuff.emailInput.value
 
@@ -155,4 +156,29 @@ updateUserStuff.submitButton.addEventListener('click', () => {
       console.error(err)
     })
 
+})
+
+deleteUserStuff.submitButton.addEventListener('click', () => {
+  if (deleteUserStuff.selectInput.value.length === 0) {
+    console.log("haha credentials go brr")
+    return
+  }
+
+  const bodyContent = {
+    userId: deleteUserStuff.selectInput.value.split(" ")[0],
+    accountType: deleteUserStuff.selectInput.value.split(" ")[1],
+  }
+  fetch('http://localhost:5000/super-admin/delete-user', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyContent)
+  })
+  .then(res => {
+      return res.json()
+    })
+  .then(res => {
+      console.log(res)
+    })
 })
