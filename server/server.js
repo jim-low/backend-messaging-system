@@ -15,11 +15,11 @@ app.use(express.json())
 app.get('/whatisthis', whatisthis)
 app.post('/login/:loginType', login)
 
-app.post('/super-admin/create-user/:userType', createUser)
-app.get('/super-admin/get-user/:userId', getUser)
+app.post('/super-admin/create-user/:userType', authenticate, createUser)
+app.get('/super-admin/get-user/:userId', authenticate, getUser)
 app.get('/super-admin/get-users', authenticate, getUsersList)
-app.post('/super-admin/update-user', updateUser)
-app.post('/super-admin/delete-user', deleteUser)
+app.post('/super-admin/update-user', authenticate, updateUser)
+app.post('/super-admin/delete-user', authenticate, deleteUser)
 
 app.get('/get-messages/:userId', authenticate, getMessages)
 
