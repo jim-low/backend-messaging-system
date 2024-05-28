@@ -13,10 +13,12 @@ async function login(email, password, loginType) {
   });
   if (!res.ok) {
     console.error("There seems to be an error while logging in")
+    return false
   }
 
   const result = await res.json();
   localStorage.setItem("token", result.token)
   localStorage.setItem("username", result.username)
   localStorage.setItem("loginType", loginType)
+  return true
 }
