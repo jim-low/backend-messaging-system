@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { query } = require("../../db.js")
 
-async function getMessages(req, res) {
+async function getChatMessages(req, res) {
   const { userId: targetUserId } = req.params;
   const { id } = req.user
 
@@ -32,4 +32,4 @@ ORDER BY message_id ASC;
   }
 }
 
-exports.getMessages = getMessages
+exports.getChatMessages = getChatMessages

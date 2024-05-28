@@ -1,7 +1,7 @@
 const { query } = require("../../db.js")
 
 
-async function checkMessages(req, res) {
+async function getMessages(req, res) {
   const { userId } = req.params
   if (userId == null) {
     return res.status(400).send({ error: "missing required parameters" })
@@ -28,4 +28,4 @@ SELECT m.message, u.username AS to_user
   }
 }
 
-exports.checkMessages = checkMessages
+exports.getMessages = getMessages
