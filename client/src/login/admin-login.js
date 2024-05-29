@@ -9,6 +9,6 @@ loginBtn.addEventListener('click', async () => {
 
   const loginSuccess = await login(emailInput.value, passwordInput.value, "admin");
   if (loginSuccess) {
-    window.location.href = "/pages/chat/chat.html"
+    window.location.href = "/pages/admin/admin-home.html"
   }
 })
