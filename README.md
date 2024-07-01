@@ -14,15 +14,15 @@
 
 ### Development
 - [ ] Develop User Registration and Email Verification
-- [ ] Develop Login Function
-- [ ] Develop role-based access control system
+- [x] Develop Login Function
+- [x] Develop role-based access control system
 
 ### Messaging System API
-- [ ] SendMessage function
-- [ ] Receive Message function using WebSocket
+- [x] SendMessage function
+- [x] Receive Message function using WebSocket
 
 ## Learning Roadmap
 - [x] JWT
 - [x] PostgresQL
-- [ ] WebSocket
-- [ ] implement role-based access to users using WebSocket
+- [x] WebSocket
+- [x] implement role-based access to users using WebSocket
